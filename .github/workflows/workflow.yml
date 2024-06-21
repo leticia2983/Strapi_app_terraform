@@ -1,0 +1,42 @@
+name: Deploy Strapi to EC2
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch, adjust as needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use Ubuntu as the runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH client
+        run: sudo apt-get install -y openssh-client
+
+      - name: SSH and Install dependencies to EC2
+        env:
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          KEY_PATH: ${{ secrets.KEY_PATH }}
+        run: |
+
+
+      - name: SSH and Deploy Strapi
+        env:
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          KEY_PATH: ${{ secrets.KEY_PATH }}
+        run: |
+          echo "${{ secrets.KEY_PATH }}" > key.pem
+          chmod 600 key.pem
+          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
+          cd home/ubuntu/app-server-dev/strapi
+          yarn install
+          yarn build
+          pm2 start npm --name "Strapi_app_terraform" -- run start
+          EOF
+
+
