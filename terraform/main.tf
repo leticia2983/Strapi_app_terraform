@@ -3,8 +3,8 @@ resource "aws_instance" "strapi" {
   ami           = "ami-0f58b397bc5c1f2e8" # Replace with your preferred AMI ID
   instance_type = var.instance_type
   key_name      = var.key_name
-  vpc_id = var.vpc_id
-  vpc_security_group_ids = var.sg_id
+#  vpc_id = var.vpc_id
+#  vpc_security_group_ids = var.sg_id
 
 
   tags = {
