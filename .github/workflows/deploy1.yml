@@ -40,8 +40,8 @@ jobs:
             ls
             git pull
             sudo npm install -g strapi
-            yarn install
-            yarn build
+            sudo yarn install
+            sudo yarn build
             pm2 start npm --name "Strapi_app_terraform" -- run start
             EOF
 
