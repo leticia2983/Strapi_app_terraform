@@ -22,10 +22,12 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           KEY_PATH: ${{ secrets.KEY_PATH }}
         run: |
-          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
+           echo "${{ secrets.KEY_PATH }}" > key.pem
+           chmod 600 key.pem
+           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
             #!/bin/bash
             sudo apt update
-            curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh       
+            curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
             git pull https://github.com/leticia2983/Strapi_app_terraform.git
             cd Strapi_app_terraform
             bash -E nodesource_setup.sh
@@ -36,6 +38,6 @@ jobs:
             pm2 start npm --name "Strapi" -- run start
             EOF
 
-      
-        
-    
+
+
+
