@@ -12,7 +12,7 @@ resource "aws_subnet" "sn1" {
 }
 
 resource "aws_security_group" "sg-let" {
-  name   = "sg-let1"
+  name   = "sglet"
   vpc_id = aws_vpc.vpc-let.id
 
   ingress {
