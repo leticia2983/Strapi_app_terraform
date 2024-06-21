@@ -32,7 +32,10 @@ jobs:
             sudo apt install nodejs -y
             npm install -g yarn
             sudo npm install -g pm2
-            #git clone https://github.com/leticia2983/Strapi_app_terraform.git
+            sudo npm install -g strapi
+            strapi --version
+
+           #git clone https://github.com/leticia2983/Strapi_app_terraform.git
             cd Strapi_app_terraform
             ls
             git pull
