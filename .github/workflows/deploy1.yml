@@ -31,7 +31,7 @@ jobs:
             curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
             sudo apt install nodejs -y
             npm install -g yarn
-            git clone https://github.com/leticia2983/Strapi_app_terraform.git
+            #git clone https://github.com/leticia2983/Strapi_app_terraform.git
             cd Strapi_app_terraform
             ls
             git pull
