@@ -13,4 +13,12 @@ variable "key_name" {
   default     = "aws_login"
 }
 
+variable "vpc_id" {
+  description = "The VPC ID where the security group will be created"
+  type        = string
+}
 
+variable "sg_id" {
+  description = "The security_group ID where the security group will be created"
+  type        = string
+}
