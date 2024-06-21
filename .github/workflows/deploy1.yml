@@ -27,14 +27,14 @@ jobs:
            ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
             #!/bin/bash
             sudo apt-get update
-            sudo apt-get npm
-            sudo apt-get yarn
+            sudo apt-get install -y npm yarn
             curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
-            git pull https://github.com/leticia2983/Strapi_app_terraform.git
-            cd Strapi_app_terraform
-            bash -E nodesource_setup.sh
             sudo apt install nodejs -y
             npm install -g yarn
+            git clone https://github.com/leticia2983/Strapi_app_terraform.git
+            cd Strapi_app_terraform
+            git pull
+            bash -E nodesource_setup.sh
             yarn install
             yarn build
             pm2 start npm --name "Strapi" -- run start
