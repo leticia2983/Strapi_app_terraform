@@ -22,28 +22,7 @@ jobs:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           KEY_PATH: ${{ secrets.KEY_PATH }}
         run: |
-           echo "${{ secrets.KEY_PATH }}" > key.pem
-           chmod 600 key.pem
-           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
-            #!/bin/bash
-            sudo apt-get update
-            #sudo apt-get install -y npm yarn
-            #curl -fsSL https://deb.nodesource.com/setup_20.x -o | sudo -E bash -
-            #sudo apt install nodejs -y
-            #npm install -g yarn
-            #sudo npm install -g pm2
 
-            strapi --version
-
-           #git clone https://github.com/leticia2983/Strapi_app_terraform.git
-            cd Strapi_app_terraform
-            ls
-            git pull
-            sudo npm install -g strapi
-            sudo yarn install
-            sudo yarn build
-            pm2 start npm --name "Strapi_app_terraform" -- run start
-            EOF
 
       - name: SSH and Deploy Strapi
         env:
@@ -54,9 +33,8 @@ jobs:
           echo "${{ secrets.KEY_PATH }}" > key.pem
           chmod 600 key.pem
           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
-          sudo npm install -g strapi
           yarn install
-          sudo yarn build
+          yarn build
           pm2 start npm --name "Strapi_app_terraform" -- run start
           EOF
 

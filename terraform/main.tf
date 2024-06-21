@@ -10,7 +10,20 @@ resource "aws_instance" "strapi" {
   tags = {
     Name = "StrapiServer_via_terraform_let"
   }
-
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt update -y
+              sudo apt install -y nodejs npm git
+              curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+              sudo npm install pm2 -g
+              sudo mkdir -p /app-server-dev/strapi
+              sudo chown -R ubuntu:ubuntu /app-server-dev/strapi
+              git clone https://github.com/leticia2983/Strapi_app_terraform.git /app-server-dev/strapi
+              cd /app-server-dev/strapi
+              npm install
+              sudo npm install -g strapi
+              EOF
 
   lifecycle {
     create_before_destroy = true
