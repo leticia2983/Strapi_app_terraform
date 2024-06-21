@@ -21,6 +21,7 @@ resource "aws_instance" "strapi" {
               sudo chown -R ubuntu:ubuntu /app-server-dev/strapi
               git clone https://github.com/leticia2983/Strapi_app_terraform.git /app-server-dev/strapi
               cd /app-server-dev/strapi
+              pwd
               npm install
               sudo npm install -g strapi
               EOF
