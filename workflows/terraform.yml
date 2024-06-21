@@ -5,6 +5,7 @@ on:
     branches:
       - main  # or the branch you want to trigger the workflow
 
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
