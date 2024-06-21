@@ -37,7 +37,7 @@ jobs:
             bash -E nodesource_setup.sh
             yarn install
             yarn build
-            pm2 start npm --name "Strapi" -- run start
+            pm2 start npm --name "Strapi_app_terraform" -- run start
             EOF
 
 
