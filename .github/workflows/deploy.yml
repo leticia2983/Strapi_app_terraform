@@ -1,7 +1,9 @@
+name: Strapi Deployment
+
 on:
   push:
     branches:
-       -main   # triger on push to main branch
+      -main   # triger on push to main branch
 
 
 jobs:
