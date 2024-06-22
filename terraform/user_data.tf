@@ -1,0 +1,12 @@
+"sudo apt-get update",
+"curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash",
+"sudo apt install -y nodejs",
+"npm install",
+"sudo npm install -g yarn",
+"sudo npm install -g strapi",
+"sudo npm install pm2 -g",
+"sudo mkdir -p /home/ubuntu/srv/strapi",
+"sudo chown -R ubuntu:ubuntu /home/ubuntu/srv/strapi",
+"cd /home/ubuntu/srv/strapi",
+"git clone https://github.com/leticia2983/Strapi_app_terraform.git",
+

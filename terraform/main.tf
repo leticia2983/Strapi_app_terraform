@@ -5,35 +5,13 @@ resource "aws_instance" "strapi" {
   key_name      = var.key_name
 
 
-
+user_data = file("user_data.sh")
 
   tags = {
     Name = "StrapiServer_via_terraform_let"
   }
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt-get update",
-      "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash",
-      "sudo apt install -y nodejs",
-      "npm install",
-      "sudo npm install -g yarn",
-      "sudo npm install -g strapi",
-      "sudo npm install pm2 -g",
-      "sudo mkdir -p /home/ubuntu/srv/strapi",
-      "sudo chown -R ubuntu:ubuntu /home/ubuntu/srv/strapi",
-      "cd /home/ubuntu/srv/strapi",
-      "git clone https://github.com/leticia2983/Strapi_app_terraform.git",
 
 
-    ]
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file("let_login.pem")
-      host        = self.public_ip
-
-    }
   }
 
     lifecycle {
@@ -44,7 +22,7 @@ resource "aws_instance" "strapi" {
       command = "echo '${aws_instance.strapi.public_ip}' > ip_address.txt"
     }
 
-  }
+
   output "instance_public_ip" {
     value = aws_instance.strapi.public_ip
   }
