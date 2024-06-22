@@ -23,7 +23,7 @@ jobs:
           KEY_PATH: ${{ secrets.KEY_PATH }}
         run: |
           echo "${{ secrets.KEY_PATH }}" > key.pem
-          chmod 400 key.pem
+          chmod 600 key.pem
 
       - name: SSH and Deploy Strapi
         env:
@@ -36,7 +36,7 @@ jobs:
           cd home/ubuntu/srv/strapi
           git pull
           pwd
-          pm2 restart strapit
+          pm2 restart strapi
           EOF
 
 
