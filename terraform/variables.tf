@@ -10,7 +10,7 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "The name of the SSH key pair"
-  default     ="my_aws_login.pem"
+  default     ="my_aws_login"
 }
 #
 #variable "vpc_id" {
