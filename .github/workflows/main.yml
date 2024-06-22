@@ -38,6 +38,7 @@ jobs:
           yarn install
           yarn build
           pm2 start npm --name "Strapi" -- run start
+          pm2 save
           EOF
 
 
