@@ -30,7 +30,7 @@ resource "aws_instance" "strapi" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = var.key_name
+      private_key = file("let_login.pem")
       host        = self.public_ip
 
     }
