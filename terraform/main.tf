@@ -17,11 +17,11 @@ resource "aws_instance" "strapi" {
               curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
               sudo apt-get install -y nodejs
               sudo npm install pm2 -g
-              sudo mkdir -p /srv/strapi
-              sudo chown -R ubuntu:ubuntu /srv/strapi
-              git clone https://github.com/leticia2983/Strapi_app_terraform.git /srv/strapi
-              cd /srv/strapi
-              pwd
+              sudo mkdir -p /home/ubuntu/srv/strapi
+              sudo chown -R ubuntu:ubuntu /home/ubuntu/srv/strapi
+              cd /home/ubuntu/srv/strapi
+              git clone https://github.com/leticia2983/Strapi_app_terraform.git
+
               npm install
               sudo npm install -g strapi
               EOF
