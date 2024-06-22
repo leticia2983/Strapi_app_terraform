@@ -1,9 +1,9 @@
-name: Deploy Strapi to EC2
-
-on:
-  push:
-    branches:
-      - main  # Trigger on push to the main branch, adjust as needed
+#name: Deploy Strapi to EC2
+#
+#on:
+#  push:
+#    branches:
+#      - main  # Trigger on push to the main branch, adjust as needed
 
 jobs:
   deploy:
@@ -16,11 +16,15 @@ jobs:
       - name: Install SSH client
         run: sudo apt-get install -y openssh-client
 
-
       - name: SSH and Deploy Strapi
         env:
           EC2_USER: ${{ secrets.EC2_USER }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
           KEY_PATH: ${{ secrets.KEY_PATH }}
-        run: cd /home/ubuntu/srv/strapi && npm run build
+
+        run: |
+          echo "${{ secrets.KEY_PATH }}" > key.pem
+          chmod 600 key.pem
+          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
+          cd /home/ubuntu/srv/strapi && npm run build
 
