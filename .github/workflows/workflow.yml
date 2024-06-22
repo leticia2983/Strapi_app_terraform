@@ -27,4 +27,4 @@ jobs:
           chmod 600 key.pem
           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
           cd /home/ubuntu/srv/strapi && npm run build
-
+          EOF
