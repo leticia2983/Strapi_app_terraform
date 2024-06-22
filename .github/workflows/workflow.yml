@@ -22,5 +22,5 @@ jobs:
           EC2_USER: ${{ secrets.EC2_USER }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
           KEY_PATH: ${{ secrets.KEY_PATH }}
-        run: npm run build
+        run: cd /home/ubuntu/srv/strapi && npm run build
 
