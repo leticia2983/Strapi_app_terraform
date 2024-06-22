@@ -28,6 +28,6 @@ jobs:
 
       - name: SSH and Deploy Strapi
         run: |
-          ssh -vvv -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST}
+          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST}
           cd /home/ubuntu/srv/strapi && npm run build
 
