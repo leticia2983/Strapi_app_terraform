@@ -14,13 +14,8 @@ user_data = file("user_data.sh")
 
   }
 
-    lifecycle {
-      create_before_destroy = true
-    }
 
-    provisioner "local-exec" {
-      command = "echo '${aws_instance.strapi.public_ip}' > ip_address.txt"
-    }
+
 
 
   output "instance_public_ip" {
