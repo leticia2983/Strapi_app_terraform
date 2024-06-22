@@ -35,8 +35,9 @@ jobs:
           sudo chmod -R 755 /home/ubuntu/srv/strapi
           cd home/ubuntu/srv/strapi
           git pull
-          pwd
-          pm2 restart strapi
+          yarn install
+          yarn build
+          pm2 start npm --name "Strapi" -- run start
           EOF
 
 
