@@ -1,6 +1,6 @@
 
 resource "aws_instance" "strapi" {
-  ami           = "ami-0f58b397bc5c1f2e8" # Replace with your preferred AMI ID
+  ami           = "ami-04b70fa74e45c3917" # Replace with your preferred AMI ID
   instance_type = var.instance_type
   key_name      = var.key_name
 
