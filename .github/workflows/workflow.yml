@@ -26,7 +26,6 @@ jobs:
           echo "${{ secrets.KEY_PATH }}" > key.pem
           chmod 400 key.pem
 
-
       - name: SSH and Deploy Strapi
         run: |
           ssh -vvv -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST}
