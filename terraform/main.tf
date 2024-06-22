@@ -4,7 +4,7 @@ resource "aws_instance" "strapi" {
   instance_type = var.instance_type
   key_name      = var.key_name
 
-user_data = file("user_data.sh")
+  user_data = file("user_data.sh")
 
   tags = {
     Name = "StrapiServer_via_terraform_let"
