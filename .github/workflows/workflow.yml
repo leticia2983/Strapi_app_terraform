@@ -28,7 +28,15 @@ jobs:
 
 
       - name: SSH and Deploy Strapi
+        env:
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          KEY_PATH: ${{ secrets.KEY_PATH}}
         run: |
-          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST}
+          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
           cd /home/ubuntu/srv/strapi && npm run build
-
+          git pull
+          yarn install
+          yarn build
+          pm2 start npm --name "Strapi" -- run start
+          EOF
