@@ -16,7 +16,7 @@ jobs:
       - name: Install SSH client
         run: sudo apt-get install -y openssh-client
 
-      - name: SSH and Deploy Strapi
+      - name: Set Key pair permisiin
         env:
           EC2_USER: ${{ secrets.EC2_USER }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
@@ -25,6 +25,8 @@ jobs:
         run: |
           echo "${{ secrets.KEY_PATH }}" > key.pem
           chmod 600 key.pem
+      - name: SSH and Deploy Strapi
+        run: |
           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
           cd /home/ubuntu/srv/strapi && npm run build
           EOF
