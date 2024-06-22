@@ -10,34 +10,44 @@ resource "aws_instance" "strapi" {
   tags = {
     Name = "StrapiServer_via_terraform_let"
   }
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo apt update -y
-              sudo apt install -y nodejs npm git
-              curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-              sudo apt-get install -y nodejs
-              sudo npm install pm2 -g
-              sudo mkdir -p /home/ubuntu/srv/strapi
-              sudo chown -R ubuntu:ubuntu /home/ubuntu/srv/strapi
-              cd /home/ubuntu/srv/strapi
-              git clone https://github.com/leticia2983/Strapi_app_terraform.git
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash",
+      "sudo apt install -y nodejs",
+      "npm install",
+      "sudo npm install -g yarn",
+      "sudo npm install -g strapi",
+      "sudo npm install pm2 -g",
+      "sudo mkdir -p /home/ubuntu/srv/strapi",
+      "sudo chown -R ubuntu:ubuntu /home/ubuntu/srv/strapi",
+      "cd /home/ubuntu/srv/strapi",
+      "git clone https://github.com/leticia2983/Strapi_app_terraform.git",
 
-              npm install
-              sudo npm install -g strapi
-              EOF
 
-  lifecycle {
-    create_before_destroy = true
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = var.key_name
+      host        = self.public_ip
+
+    }
   }
 
-  provisioner "local-exec" {
-    command = "echo '${aws_instance.strapi.public_ip}' > ip_address.txt"
-  }
+    lifecycle {
+      create_before_destroy = true
+    }
 
-}
-output "instance_public_ip" {
-value = aws_instance.strapi.public_ip
-}
+    provisioner "local-exec" {
+      command = "echo '${aws_instance.strapi.public_ip}' > ip_address.txt"
+    }
+
+  }
+  output "instance_public_ip" {
+    value = aws_instance.strapi.public_ip
+  }
 
 #resource "aws_security_group" "strapi_sg" {
 #  name = "strapi-sg"
