@@ -10,7 +10,7 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "The name of the SSH key pair"
-  default     ="tokyo_login"
+  default     ="let_useast_login"
 }
 #
 #variable "vpc_id" {

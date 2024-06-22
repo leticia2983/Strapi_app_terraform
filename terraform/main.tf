@@ -1,13 +1,13 @@
 
 resource "aws_instance" "strapi" {
-  ami           = "ami-01bef798938b7644d" # Replace with your preferred AMI ID
+  ami           = "ami-04b70fa74e45c3917" # Replace with your preferred AMI ID
   instance_type = var.instance_type
   key_name      = var.key_name
 
   user_data = file("user_data.sh")
 
   tags = {
-    Name = "StrapiServer_via_terraform_tokyo_let"
+    Name = "StrapiServer_via_terraform_east_us_let"
   }
 
 
