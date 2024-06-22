@@ -22,16 +22,5 @@ jobs:
           EC2_USER: ${{ secrets.EC2_USER }}
           EC2_HOST: ${{ secrets.EC2_HOST }}
           KEY_PATH: ${{ secrets.KEY_PATH }}
-        run: |
-          echo "${{ secrets.KEY_PATH }}" > key.pem
-          chmod 600 key.pem
-          ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
-          cd home/ubuntu/srv/strapi
-          ls
-          pwd
-          yarn install
-          yarn build
-          pm2 start npm --name "strapi" -- run start
-          EOF
-
+        run: npm run build
 
