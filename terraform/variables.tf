@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "instance_type" {
   description = "The instance type to use for the EC2 instance"
-  default     = "t2.micro"
+  default     = "t2.small"
 }
 
 variable "key_name" {
@@ -13,14 +13,14 @@ variable "key_name" {
   default     = "aws_login"
 }
 
-#variable "vpc_id" {
-#  description = "The VPC ID where the security group will be created"
-#  type        = string
-#  default = "vpc-094736b7e137c8a5e"
-#}
-#
-#variable "sg_id" {
-#  description = "The security_group ID where the security group will be created"
-#  type        = string
-#  default = "sg-0cdebf956911bf001"
-#}
+variable "vpc_id" {
+  description = "The VPC ID where the security group will be created"
+  type        = string
+  default = "vpc-0bf60a83999950650"
+}
+
+variable "sg_id" {
+  description = "The security_group ID where the security group will be created"
+  type        = string
+  default = "sg-0728132af8b28603a"
+}
