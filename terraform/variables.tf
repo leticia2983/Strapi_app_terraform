@@ -5,12 +5,12 @@ variable "aws_region" {
 
 variable "instance_type" {
   description = "The instance type to use for the EC2 instance"
-  default     = "t2.small"
+  default     = "t2.micro"
 }
 
 variable "key_name" {
   description = "The name of the SSH key pair"
-  default     =""
+  default     ="my_aws_login.pem"
 }
 #
 #variable "vpc_id" {
