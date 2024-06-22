@@ -1,4 +1,4 @@
-user_data = <<-EOF
+
               #!/bin/bash
               sudo apt-get update
               curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash
@@ -17,5 +17,5 @@ user_data = <<-EOF
               npm run build
               pm2 start npm --name "strapi" -- run start
               pm2 save
-              EOF
+
 
