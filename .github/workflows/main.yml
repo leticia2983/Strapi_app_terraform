@@ -35,10 +35,9 @@ jobs:
           sudo chmod -R 755 /home/ubuntu/srv/strapi
           cd home/ubuntu/srv/strapi
           git pull
-          cd Strapi_app_terraform/
           yarn install
           yarn build
-          pm2 start all
+          pm2 restart strapi
           pm2 save
           EOF
 
