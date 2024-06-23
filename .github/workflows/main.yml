@@ -33,7 +33,7 @@ jobs:
         run: |
           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
           sudo chmod -R 755 /home/ubuntu/srv/strapi
-          cd home/ubuntu/srv/strapi
+          cd /home/ubuntu/srv/strapi
           pwd
 #          git pull
 #          yarn install
