@@ -7,7 +7,7 @@ resource "aws_instance" "strapi" {
   user_data = file("user_data.sh")
 
   tags = {
-    Name = "StrapiServer_via_terraform_east_us_let_t2.medium"
+    Name = "StrapiServer_via_terraform_east_us_let_t2.medfinal"
   }
 
 
