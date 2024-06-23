@@ -32,12 +32,12 @@ jobs:
           KEY_PATH: ${{ secrets.KEY_PATH }}
         run: |
           ssh -i key.pem -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} << 'EOF'
-#          sudo chmod -R 755 /home/ubuntu/srv/strapi
-#          cd home/ubuntu/srv/strapi
-#          git pull
-#          yarn install
-#          yarn build
-          pm2 restart strapi
+          sudo chmod -R 755 /home/ubuntu/srv/strapi
+          cd home/ubuntu/srv/strapi
+          git pull
+          yarn install
+          yarn build
+          pm2 start npm --name "strapi" -- run start
           pm2 save
           EOF
 
