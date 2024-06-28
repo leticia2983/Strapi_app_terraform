@@ -1,8 +1,7 @@
-#on:
-#
-#  push:
-#    branches:
-#      - main
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
 jobs:
   terraform:
     runs-on: ubuntu-latest
